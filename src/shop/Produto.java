@@ -2,6 +2,7 @@ package shop;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import static shop.Avaliacao.NAO_AVALIADO;
@@ -46,7 +47,12 @@ public class Produto {
     }
 
     public BigDecimal getDesconto() {
+
         return preco.multiply(TAXA_DESCONTO).setScale(2, RoundingMode.HALF_UP);
+    }
+
+    public LocalDate getVenceEm() {
+        return LocalDate.now();
     }
 
     public Avaliacao getAvaliacao() {
@@ -59,20 +65,21 @@ public class Produto {
 
     @Override
     public String toString() {
-        return id + " " + nome + " " + preco + " " + getDesconto() + " " + getAvaliacao().getEstrelas();
+        return id + " " + nome + " " + preco + " " + getDesconto() + " " + getAvaliacao().getEstrelas() + "  Vence em : " +getVenceEm();
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
-        };
+        }
+        ;
         //if (obj != null && getClass() == obj.getClass()) {
 
-            if (obj instanceof Produto){
+        if (obj instanceof Produto) {
             Produto outro = (Produto) obj;
-            System.out.println(">>> "+outro+ " \n"+ this+ " FIM EQUALS");
-            return  outro.id == this.id && Objects.equals(this.nome, outro.nome);
+            System.out.println(">>> " + outro + " \n" + this + " FIM EQUALS");
+            return outro.id == this.id && Objects.equals(this.nome, outro.nome);
         }
         return false;
     }
