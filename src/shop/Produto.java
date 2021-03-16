@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import static shop.Avaliacao.NAO_AVALIADO;
 
-public abstract class Produto implements Avalidora {
+public abstract class Produto implements Avalidora<Produto> {
 
     public static final BigDecimal TAXA_DESCONTO = BigDecimal.valueOf(0.1);
     private int id;
