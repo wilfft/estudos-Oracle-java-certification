@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import static shop.Avaliacao.NAO_AVALIADO;
 
-  public abstract class Produto {
+public abstract class Produto implements Avalidora {
 
     public static final BigDecimal TAXA_DESCONTO = BigDecimal.valueOf(0.1);
     private int id;
@@ -15,8 +15,8 @@ import static shop.Avaliacao.NAO_AVALIADO;
     private BigDecimal preco;
     private Avaliacao avaliacao;
 
-  //  public Produto() {
-      //    this(0, "sem nome", BigDecimal.ZERO);    }
+    //  public Produto() {
+    //    this(0, "sem nome", BigDecimal.ZERO);    }
 
     public Produto(int id, String nome, BigDecimal preco, Avaliacao avaliacao) {
         this.id = id;
@@ -53,16 +53,18 @@ import static shop.Avaliacao.NAO_AVALIADO;
         return LocalDate.now();
     }
 
+
     public Avaliacao getAvaliacao() {
         return avaliacao;
     }
 
+    @Override
     public abstract Produto aplicarAvaliacao(Avaliacao novaAvaliacao);
-  //  { return new Produto(this.id, this.nome, this.preco, novaAvaliacao);  }
+    //  { return new Produto(this.id, this.nome, this.preco, novaAvaliacao);  }
 
     @Override
     public String toString() {
-        return id + " " + nome + " " + preco + " " + getDesconto() + " " + getAvaliacao().getEstrelas() + "  Vence em : " +getVenceEm();
+        return id + " " + nome + " " + preco + " " + getDesconto() + " " + getAvaliacao().getEstrelas() + "  Vence em : " + getVenceEm();
     }
 
     @Override
