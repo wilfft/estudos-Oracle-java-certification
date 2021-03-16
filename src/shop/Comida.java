@@ -3,7 +3,7 @@ package shop;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Comida extends Produto {
+  class Comida extends Produto {
 
     public LocalDate venceEm;
 
@@ -28,5 +28,10 @@ public class Comida extends Produto {
     public BigDecimal getDesconto() {
         return venceEm.equals(LocalDate.now()) ? super.getDesconto(): BigDecimal.ZERO;
 
-    }
+    } @Override
+      public Produto aplicarAvaliacao(Avaliacao novaAvaliacao) {
+          return new Comida(getId(),getNome(),getPreco(), novaAvaliacao, venceEm);
+
+      }
+
 }

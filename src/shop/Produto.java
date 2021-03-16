@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import static shop.Avaliacao.NAO_AVALIADO;
 
-public class Produto {
+  public abstract class Produto {
 
     public static final BigDecimal TAXA_DESCONTO = BigDecimal.valueOf(0.1);
     private int id;
@@ -15,10 +15,8 @@ public class Produto {
     private BigDecimal preco;
     private Avaliacao avaliacao;
 
-    public Produto() {
-        this(0, "sem nome", BigDecimal.ZERO);
-
-    }
+  //  public Produto() {
+      //    this(0, "sem nome", BigDecimal.ZERO);    }
 
     public Produto(int id, String nome, BigDecimal preco, Avaliacao avaliacao) {
         this.id = id;
@@ -59,9 +57,8 @@ public class Produto {
         return avaliacao;
     }
 
-    public Produto aplicarAvaliacao(Avaliacao novaAvaliacao) {
-        return new Produto(this.id, this.nome, this.preco, novaAvaliacao);
-    }
+    public abstract Produto aplicarAvaliacao(Avaliacao novaAvaliacao);
+  //  { return new Produto(this.id, this.nome, this.preco, novaAvaliacao);  }
 
     @Override
     public String toString() {
