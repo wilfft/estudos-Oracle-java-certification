@@ -58,8 +58,8 @@ public abstract class Produto implements Avalidora<Produto> {
         return avaliacao;
     }
 
-    @Override
-    public abstract Produto aplicarAvaliacao(Avaliacao novaAvaliacao);
+    //  @Override
+    //   public abstract Produto aplicarAvaliacao(Avaliacao novaAvaliacao);
     //  { return new Produto(this.id, this.nome, this.preco, novaAvaliacao);  }
 
     @Override

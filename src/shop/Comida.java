@@ -28,7 +28,8 @@ import java.time.LocalDate;
     public BigDecimal getDesconto() {
         return venceEm.equals(LocalDate.now()) ? super.getDesconto(): BigDecimal.ZERO;
 
-    } @Override
+    }
+     @Override
       public Produto aplicarAvaliacao(Avaliacao novaAvaliacao) {
           return new Comida(getId(),getNome(),getPreco(), novaAvaliacao, venceEm);
 
