@@ -4,14 +4,22 @@ import shop.Produto;
 
 import java.math.BigDecimal;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 public class main {
+  //  private static Logger logger  = Logger.getLogger(src.Class.getName());
 
     public static void main(String[] args) {
+
+
         GerenciadorDeProduto gm = new GerenciadorDeProduto(Locale.US);
         Produto p1 = gm.criarProduto(101, "Chá", BigDecimal.valueOf(1.99), Avaliacao.NAO_AVALIADO);
-        //gm.printProdutoReport();
-        p1 = gm.reviewProduto(p1, Avaliacao.TRES_ESTRELAS, "Bom mas sem açucar");
+        gm.printProdutoReport();
+        p1 = gm.reviewProduto(p1, Avaliacao.CINCO_ESTRELAS, "Bom mas sem açucar");
+         p1 = gm.reviewProduto(p1, Avaliacao.CINCO_ESTRELAS, "gostei muito bom");
+       // p1 = gm.reviewProduto(p1, Avaliacao.CINCO_ESTRELAS, "nao gostei muito");
+
+
         gm.printProdutoReport();
      /*   Produto p2 = gm.criarProduto(102, "Refrigenrante", BigDecimal.valueOf(1.99), Avaliacao.QUATRO_ESTRELAS);
         Produto p3 = gm.criarProduto(103, "Bolo", BigDecimal.valueOf(1.99),

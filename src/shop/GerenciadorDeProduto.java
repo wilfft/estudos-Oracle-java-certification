@@ -59,7 +59,7 @@ public class GerenciadorDeProduto {
                 reviews[i] = new Review(avaliacao, comentario);
                 reviewed = true;
             }
-            sum += reviews[i].getAvaliacao().ordinal();
+            sum = sum+ reviews[i].getAvaliacao().ordinal();
             i++;
         }
 

@@ -9,6 +9,7 @@ public interface Avalidora<T> {
 
 
     public static Avaliacao converte(int estrelas) {
+
         return (estrelas >= 0 && estrelas <= 0 ? Avaliacao.values()[estrelas] : DEFAULT_RATING);
     }
 

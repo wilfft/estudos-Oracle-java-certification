@@ -30,6 +30,12 @@ public class reducers {
                 .reduce((s1, s2) -> s1+""+s2);
         System.out.println(x1);
 
+        try {
+            System.out.println("TESTE");
+        } catch (NullPointerException a){}
+        catch (Exception e){}
+
+
     }
 }
 
