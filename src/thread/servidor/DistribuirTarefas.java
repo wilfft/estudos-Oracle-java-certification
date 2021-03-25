@@ -1,6 +1,9 @@
 package thread.servidor;
 
+import java.io.IOException;
+import java.io.PrintStream;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class DistribuirTarefas implements Runnable {
 
@@ -13,12 +16,29 @@ public class DistribuirTarefas implements Runnable {
 
     @Override
     public void run() {
-
-        System.out.println("THREAD EXECUTANDO " + Thread.currentThread().getName() + "  " + socket.getPort());
-
         try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
+            System.out.println("THREAD EXECUTANDO " + Thread.currentThread().getName() + "  " + socket.getPort());
+            Scanner entradaCliente = new Scanner(socket.getInputStream());
+            PrintStream saidaCliente = new PrintStream(socket.getOutputStream());
+            while (entradaCliente.hasNextLine()) {
+                String comando = entradaCliente.nextLine();
+                switch (comando) {
+                    case "c1":
+                        saidaCliente.println("Comando escolhido: " + comando);
+                        break;
+
+                    case "c2":
+                        saidaCliente.println("Comando escolhido: c2");
+                        break;
+                    case "c3":
+                        saidaCliente.println("Comando escolhido: c3");
+                        break;
+
+                }
+            }
+            entradaCliente.close();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

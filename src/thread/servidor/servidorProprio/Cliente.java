@@ -1,15 +1,18 @@
-package thread.servidor;
+package thread.servidor.servidorProprio;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class Cliente {
-
     public static void main(String[] args) throws IOException, InterruptedException {
-        Socket socket = new Socket("localhost", 12345);
-        System.out.println("Conexao estabelecida");
+        final String nome;
+
+
+            Socket socket = new Socket("localhost", 12345);
+
 
         Thread mensagemSaida = new Thread(new Runnable() {
             @Override
@@ -17,39 +20,45 @@ public class Cliente {
                 try {
                     PrintStream saida = new PrintStream(socket.getOutputStream());
                     Scanner teclado = new Scanner(System.in);
+
+
                     while (teclado.hasNextLine()) {
-                        String texto = teclado.nextLine();
-                        if (texto.trim().equals("")) {
+                        String text = teclado.nextLine();
+
+                        if (text.trim().equals("")) {
                             break;
                         }
-                        saida.println(texto);
+                        saida.println(text);
                     }
                     saida.close();
                     teclado.close();
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("Servidor não está rodando");
                 }
+
             }
         });
-        Thread entrada = new Thread(new Runnable() {
+        Thread mensagemEntrada = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    System.out.println("...aguardando resposta do servidor");
+                    System.out.println("aguardando resposta do servidor....");
                     Scanner respostaServidor = new Scanner(socket.getInputStream());
                     while (respostaServidor.hasNextLine()) {
                         System.out.println(respostaServidor.nextLine());
                     }
                     respostaServidor.close();
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
+
             }
         });
 
-        entrada.start();
         mensagemSaida.start();
-        mensagemSaida.join();
+        mensagemEntrada.start();
+        mensagemEntrada.join();
+
         socket.close();
     }
 }
