@@ -24,6 +24,7 @@ public class Cliente {
                         }
                         saida.println(texto);
                     }
+                    System.out.println("Cliente finalizado");
                     saida.close();
                     teclado.close();
                 } catch (IOException e) {

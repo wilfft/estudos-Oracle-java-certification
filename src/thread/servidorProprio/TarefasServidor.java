@@ -1,20 +1,21 @@
-package thread.servidor.servidorProprio;
+package thread.servidorProprio;
 
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
 
 public class TarefasServidor implements Runnable {
 
     private Socket socket;
     private ServidorMain servidor;
+    private ExecutorService threadPoll;
 
-
-    public TarefasServidor(Socket socket, ServidorMain servidor) {
+    public TarefasServidor(Socket socket, ServidorMain servidor, ExecutorService threadPoll) {
         this.socket = socket;
-        this
-                .servidor = servidor;
+        this.servidor = servidor;
+        this.threadPoll = threadPoll;
     }
 
     @Override
@@ -31,6 +32,9 @@ public class TarefasServidor implements Runnable {
                 switch (comando) {
                     case "c1":
                         saida.println("COMANDO C1");
+                        ComandoC1 c1 = new ComandoC1(saida);
+
+                        threadPoll.execute(c1);
                         break;
                     case "c2":
                         saida.println("COMANDO C2");
