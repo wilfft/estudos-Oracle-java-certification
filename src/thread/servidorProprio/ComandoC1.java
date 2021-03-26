@@ -2,7 +2,7 @@ package thread.servidorProprio;
 
 import java.io.PrintStream;
 
-public class ComandoC1 implements Runnable {
+ class ComandoC1 implements Runnable {
     private PrintStream saida;
 
     public ComandoC1(PrintStream saida) {
