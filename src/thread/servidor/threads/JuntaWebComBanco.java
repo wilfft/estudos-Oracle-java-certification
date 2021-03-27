@@ -1,4 +1,4 @@
-package thread.servidor;
+package thread.servidor.threads;
 
 import java.io.PrintStream;
 import java.util.concurrent.*;

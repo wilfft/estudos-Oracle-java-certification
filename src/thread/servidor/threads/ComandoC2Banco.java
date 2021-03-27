@@ -1,4 +1,4 @@
-package thread.servidor;
+package thread.servidor.threads;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
